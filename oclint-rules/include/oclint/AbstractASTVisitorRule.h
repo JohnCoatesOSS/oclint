@@ -28,7 +28,7 @@ protected:
         {
             clang::SourceLocation startLocation = (*it)->getLocStart();
             if (startLocation.isValid() &&
-                sourceManager->getMainFileID() == sourceManager->getFileID(startLocation))
+                sourceManager->getFileCharacteristic(startLocation) == clang::SrcMgr::CharacteristicKind::C_User)
             {
                 (void) /* explicitly ignore the return of this function */
                     clang::RecursiveASTVisitor<T>::TraverseDecl(*it);
